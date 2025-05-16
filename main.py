@@ -1,6 +1,7 @@
 import pygame,sys
 from pygame.locals import *
 from maze import Maze
+from player import Player
 pygame.init()
 
 BLACK = (0,0,0)
@@ -20,7 +21,7 @@ fps = 60
 cell_size = 50
 
 maze = Maze("gamemap5.txt")
-
+player = Player("gamemap5.txt")
 maze_width, maze_height = maze.get_matrix_size()
 
 while True:
@@ -30,7 +31,7 @@ while True:
             pygame.quit()
             sys.exit()
     maze.draw_maze(screen,maze_height,maze_width,cell_size)
-
+    player.draw_player(screen,cell_size)
     pygame.display.update()
     pygame.display.flip()
     clock.tick(60)

@@ -1,7 +1,6 @@
 import pygame
 
 class Maze:
-
     def __init__(self,file_name):
         matrix = []
         with open(file_name,"r",encoding="utf-8") as f:
@@ -31,12 +30,5 @@ class Maze:
                 if self.maze[y][x] == '3':
                     pygame.draw.rect(screen,end_color,(x*cell_size,y*cell_size,cell_size,cell_size))
         
-        def get_player_pos(self):
-            rows = len(self.maze)
-            cols = len(self.maze[0]) 
-            m = self.maze
-            for y in range(rows):
-                for x in range(cols):
-                    if m[y][x] == '1':
-                        return (x,y)
+  
         
