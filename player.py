@@ -6,6 +6,7 @@ class Player(Maze):
       self.player_x, self.player_y = self.find_player()
       self.maze_height = len(self.maze)
       self.maze_width = len(self.maze[0])
+      self.is_win = False
 
     def find_player(self):
         rows = len(self.maze)
@@ -44,6 +45,8 @@ class Player(Maze):
              m[y-1][x]='1'
              m[y][x]='0'
              self.player_y = y-1
+             self.is_win=True
+
 
     def move_down(self):
         x = self.player_x
@@ -51,7 +54,6 @@ class Player(Maze):
         width = self.maze_width
         height = self.maze_height
         m = self.maze
-        print(height)
         if y+1<height and m[y+1][x]=='0':
              m[y+1][x]='1'
              m[y][x]='0'
@@ -60,6 +62,7 @@ class Player(Maze):
              m[y+1][x]='1'
              m[y][x]='0'
              self.player_y = y+1
+             self.is_win = True
     
     def move_left(self):
         x = self.player_x
@@ -76,6 +79,7 @@ class Player(Maze):
              m[y][x-1]='1'
              m[y][x]='0'
              self.player_x = x-1
+             self.is_win = True
     
     
     def move_right(self):
@@ -93,3 +97,12 @@ class Player(Maze):
              m[y][x+1]='1'
              m[y][x]='0'
              self.player_x = x+1
+             self.is_win = True
+
+    def draw_win(self,screen,win_x,win_y):
+        pygame.font.init()
+        font = pygame.font.SysFont("Arial",70)
+        win_color = (176,0,142)
+        print("aaa")
+        text_surface = font.render("HAI VINTO",True,win_color)
+        screen.blit(text_surface,(200,200))
