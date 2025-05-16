@@ -6,8 +6,9 @@ pygame.init()
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 RED = (255,0,0)
+BLUE = (0,0,255)
 
-window_width = 900
+window_width = 1200
 window_height = 600
 window_size = (window_width,window_height)
 screen = pygame.display.set_mode(window_size)
@@ -16,9 +17,9 @@ pygame.display.set_caption("Labirinto")
 clock = pygame.time.Clock()
 fps = 60
 
-cell_size = 10
+cell_size = 50
 
-maze = Maze("gamemap1.txt")
+maze = Maze("gamemap5.txt")
 
 maze_width, maze_height = maze.get_matrix_size()
 
@@ -28,7 +29,7 @@ while True:
             pygame.display.quit()
             pygame.quit()
             sys.exit()
-    maze.draw_maze(screen,maze_height,maze_width,cell_size,RED,WHITE)
+    maze.draw_maze(screen,maze_height,maze_width,cell_size)
 
     pygame.display.update()
     pygame.display.flip()
