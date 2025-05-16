@@ -29,6 +29,7 @@ class Maze:
                     pygame.draw.rect(screen,void_color,(x*cell_size,y*cell_size,cell_size,cell_size))
                 if self.maze[y][x] == '3':
                     pygame.draw.rect(screen,end_color,(x*cell_size,y*cell_size,cell_size,cell_size))
+
         
   
         
