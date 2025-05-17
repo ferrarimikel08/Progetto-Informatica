@@ -103,7 +103,10 @@ class Player(Maze):
 
     def draw_win(self,screen,win_x,win_y):
         pygame.font.init()
-        font = pygame.font.SysFont("Fantasy",100)
-        win_color = (255,222,000)
-        text_surface = font.render("HAI COMPLETATO IL LIVELLO",True,win_color)
-        screen.blit(text_surface,(100,420))
+        font1 = pygame.font.SysFont("Fantasy",100)
+        font2 = pygame.font.SysFont("Fantasy", 50)
+        win_color = (200,55,60)
+        text_surface1 = font1.render("HAI COMPLETATO IL LIVELLO",True,win_color)
+        text_surface2 = font2.render('premere "INVIO" per passare al prossimo livello',True,win_color )
+        screen.blit(text_surface1,(100,420))
+        screen.blit(text_surface2,(200,500))

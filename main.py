@@ -4,14 +4,10 @@ from maze import Maze
 from player import Player
 pygame.init()
 
-BLACK = (0,0,0)
-WHITE = (255,255,255)
-RED = (255,0,0)
-BLUE = (0,0,255)
-
 window_width = 1200
 window_height = 600
 window_size = (window_width,window_height)
+window_color = (120,30,35)
 pygame.display.set_caption("Labirinto")
 
 clock = pygame.time.Clock()
@@ -24,6 +20,7 @@ for level in levels:
     maze = Maze(level)
     player = Player(level)
     screen = pygame.display.set_mode(window_size)
+    screen.fill(window_color)
 
     maze_width, maze_height = maze.get_matrix_size()
     play = True

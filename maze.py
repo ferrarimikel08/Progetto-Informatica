@@ -17,9 +17,9 @@ class Maze:
 
 
     def draw_maze(self,screen,maze_height,maze_width,cell_size):
-        end_color = (0,255,0)
-        wall_color = (0,0,255)
-        void_color = (255,255,255)
+        end_color = (255,200,80)
+        wall_color = (120,30,35)
+        void_color = (200,55,60)
 
         for y in range(maze_height):
             for x in range(maze_width):
