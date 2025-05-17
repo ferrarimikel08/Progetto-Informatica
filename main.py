@@ -18,7 +18,7 @@ clock = pygame.time.Clock()
 fps = 30
 
 cell_size = 50
-levels = ["gamemap5.txt","gamemap1.txt"]
+levels = ["gamemap1.txt", "gamemap2.txt", "gamemap3.txt", "gamemap4.txt", "gamemap5.txt"]
 
 for level in levels:
     maze = Maze(level)

@@ -1,6 +1,8 @@
 import pygame
+
 from maze import Maze
 class Player(Maze):
+    
     def __init__(self, map_name):
       super().__init__(map_name)
       self.player_x, self.player_y = self.find_player()
@@ -101,8 +103,7 @@ class Player(Maze):
 
     def draw_win(self,screen,win_x,win_y):
         pygame.font.init()
-        font = pygame.font.SysFont("Arial",70)
-        win_color = (176,0,142)
-        print("aaa")
-        text_surface = font.render("HAI VINTO",True,win_color)
-        screen.blit(text_surface,(200,200))
+        font = pygame.font.SysFont("Fantasy",100)
+        win_color = (255,222,000)
+        text_surface = font.render("HAI COMPLETATO IL LIVELLO",True,win_color)
+        screen.blit(text_surface,(100,420))
