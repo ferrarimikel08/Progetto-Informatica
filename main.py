@@ -14,10 +14,12 @@ clock = pygame.time.Clock()
 fps = 30
 
 cell_size = 50
-levels = ["gamemap1.txt", "gamemap2.txt", "gamemap3.txt", "gamemap4.txt", "gamemap5.txt"]
+levels = ["gamemap1.txt", "gamemap2.txt"]
 times = []
+
 level_number = len(levels)
 for level in levels:
+    time_registered = False
     current_time = 0
     start_time = pygame.time.get_ticks()
     level_number = level_number-1
@@ -59,8 +61,12 @@ for level in levels:
         player.draw_time(screen,current_time)
         
         if player.is_win:
+            if time_registered==False:
+                times.append(current_time)
+                time_registered=True
+                
             if level_number==0:
-                player.draw_end(screen)
+                player.draw_end(screen,times)
             else:
                 player.draw_win(screen)
             
