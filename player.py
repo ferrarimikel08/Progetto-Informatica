@@ -83,6 +83,19 @@ class Player(Maze):
              self.player_x = x-1
              self.is_win = True
     
+    def update_records(self,times):
+        level_number = 0
+        records = self.get_records()
+        for time in times:
+            if len(records)>level_number:
+                records[level_number] = min(records[level_number],time)
+            else:
+                records.append(time)
+            level_number+=1
+        with open("records.txt","w") as f:
+            for r in records:
+                f.write(str(r)+"\n")
+
     
     def move_right(self):
         x = self.player_x
@@ -123,12 +136,14 @@ class Player(Maze):
         screen.blit(text_surface2,(200,500))
 
         level_number = 0
+        records = self.get_records()
         for time in times:
-            level_number=level_number+1
-            text = "livello "+str(level_number)+": "+str(time)
+            
+            text = "livello "+str(level_number)+": "+str(time)+" record: "+str(records[level_number])
             text_surface3 = font3.render(text,True,win_color)
             ypos = 550+10*level_number
             screen.blit(text_surface3,(300,ypos))
+            level_number=level_number+1
 
 
 
@@ -138,3 +153,10 @@ class Player(Maze):
         win_color = (200,55,60)
         text_surface1 = font1.render(str(time),True,win_color)
         screen.blit(text_surface1,(30,550))
+    
+    def get_records(self):
+        records = []
+        with open("records.txt","r") as f:
+            records = f.readlines()
+            records = [float(r) for r in records]
+        return records
