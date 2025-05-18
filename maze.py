@@ -1,20 +1,18 @@
 import pygame
 
 class Maze:
-    def __init__(self,file_name):
+    def __init__(self,file_name): #funzione init, leggiamo il file con la matrice (8X24)
         matrix = []
         with open(file_name,"r",encoding="utf-8") as f:
             lines = f.readlines()
             for line in lines:
                 matrix.append(line.split())
-
         self.maze = matrix
     
-    def get_matrix_size(self):
+    def get_matrix_size(self): #funzione che ritorna una tupla con (n colonne, n righe)
         rows = len(self.maze)
         cols = len(self.maze[0])
         return (cols,rows)
-
 
     def draw_maze(self,screen,maze_height,maze_width,cell_size):
         end_color = (255,200,80)

@@ -15,8 +15,12 @@ fps = 30
 
 cell_size = 50
 levels = ["gamemap1.txt", "gamemap2.txt", "gamemap3.txt", "gamemap4.txt", "gamemap5.txt"]
-
+times = []
+level_number = len(levels)
 for level in levels:
+    current_time = 0
+    start_time = pygame.time.get_ticks()
+    level_number = level_number-1
     maze = Maze(level)
     player = Player(level)
     screen = pygame.display.set_mode(window_size)
@@ -26,11 +30,13 @@ for level in levels:
     play = True
 
     while play:
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.display.quit()
                 pygame.quit()
                 sys.exit()
+
             if event.type == pygame.KEYDOWN and player.is_win==False:            
                 if event.key==pygame.K_LEFT:
                     player.move_left()
@@ -39,19 +45,25 @@ for level in levels:
                 elif event.key==pygame.K_UP:
                     player.move_up()
                 elif event.key==pygame.K_DOWN:
-                    player.move_down()
+                    player.move_down()                    
             elif event.type == pygame.KEYDOWN and player.is_win==True:
                 if event.key == pygame.K_RETURN:
                     play = False
         
-    
-
+        clock.tick(fps)
+        if player.is_win == False:
+            current_time = float(pygame.time.get_ticks() - start_time)/1000.0
+        screen.fill(window_color)
         maze.draw_maze(screen,maze_height,maze_width,cell_size)
         player.draw_player(screen,cell_size)
+        player.draw_time(screen,current_time)
+        
         if player.is_win:
-            player.draw_win(screen,window_width/2,window_height/2)
+            if level_number==0:
+                player.draw_end(screen)
+            else:
+                player.draw_win(screen)
+            
         pygame.display.update()
         pygame.display.flip()
-        clock.tick(fps)
-
-    
+        

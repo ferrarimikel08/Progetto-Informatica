@@ -101,12 +101,29 @@ class Player(Maze):
              self.player_x = x+1
              self.is_win = True
 
-    def draw_win(self,screen,win_x,win_y):
+    def draw_win(self,screen):        
         pygame.font.init()
         font1 = pygame.font.SysFont("Fantasy",100)
         font2 = pygame.font.SysFont("Fantasy", 50)
         win_color = (200,55,60)
         text_surface1 = font1.render("HAI COMPLETATO IL LIVELLO",True,win_color)
-        text_surface2 = font2.render('premere "INVIO" per passare al prossimo livello',True,win_color )
+        text_surface2 = font2.render('premere "INVIO" per passare al prossimo livello',True,win_color)                        
         screen.blit(text_surface1,(100,420))
         screen.blit(text_surface2,(200,500))
+    
+    def draw_end(self,screen):
+        pygame.font.init()
+        font1 = pygame.font.SysFont("Fantasy",100)
+        font2 = pygame.font.SysFont("Fantasy", 50)
+        win_color = (200,55,60)
+        text_surface1 = font1.render("HAI COMPLETATO IL GIOCO",True,win_color)
+        text_surface2 = font2.render('premere "INVIO" per terminare il gioco',True,win_color)                        
+        screen.blit(text_surface1,(100,420))
+        screen.blit(text_surface2,(200,500))
+
+    def draw_time(self,screen,time):
+        pygame.font.init()
+        font1 = pygame.font.SysFont("Fantasy",20)
+        win_color = (200,55,60)
+        text_surface1 = font1.render(str(time),True,win_color)
+        screen.blit(text_surface1,(30,550))
