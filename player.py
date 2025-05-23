@@ -154,8 +154,8 @@ class Player(Maze):
     def draw_time(self,screen,time):
         pygame.font.init()
         font1 = pygame.font.SysFont("Fantasy",20)
-        win_color = (200,55,60)
-        text_surface1 = font1.render(str(time),True,win_color)
+        time_color = (200,55,60)
+        text_surface1 = font1.render("tempo: "+str(time),True,time_color)
         screen.blit(text_surface1,(30,550))
     
     def get_records(self):

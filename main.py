@@ -8,6 +8,7 @@ window_width = 1200
 window_height = 600
 window_size = (window_width,window_height)
 window_color = (120,30,35)
+BLACK = (0,0,0)
 pygame.display.set_caption("Labirinto")
 
 clock = pygame.time.Clock()
@@ -21,7 +22,7 @@ level_number = len(levels)
 for level in levels:
     time_registered = False
     current_time = 0
-    start_time = pygame.time.get_ticks()
+    first_input = True
     level_number = level_number-1
     maze = Maze(level)
     player = Player(level)
@@ -39,7 +40,12 @@ for level in levels:
                 pygame.quit()
                 sys.exit()
 
-            if event.type == pygame.KEYDOWN and player.is_win==False:            
+            if event.type == pygame.KEYDOWN and player.is_win==False:  
+                if first_input == True:
+                    start_time = pygame.time.get_ticks()
+                    first_input = False
+                    time = 0
+
                 if event.key==pygame.K_LEFT:
                     player.move_left()
                 elif event.key==pygame.K_RIGHT:
@@ -47,16 +53,18 @@ for level in levels:
                 elif event.key==pygame.K_UP:
                     player.move_up()
                 elif event.key==pygame.K_DOWN:
-                    player.move_down()                    
+                    player.move_down()                   
             elif event.type == pygame.KEYDOWN and player.is_win==True:
                 if event.key == pygame.K_RETURN:
                     play = False
         
         clock.tick(fps)
-        if player.is_win == False:
+        if player.is_win == False and first_input==False:
             current_time = float(pygame.time.get_ticks() - start_time)/1000.0
-        screen.fill(window_color)
+        screen.fill(BLACK)
         maze.draw_maze(screen,maze_height,maze_width,cell_size)
+        if player.is_win==False:
+            maze.draw_instructions(screen)
         player.draw_player(screen,cell_size)
         player.draw_time(screen,current_time)
         
@@ -72,5 +80,5 @@ for level in levels:
                 player.draw_win(screen)
             
         pygame.display.update()
-        pygame.display.flip()
+        
         

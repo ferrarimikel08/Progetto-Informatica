@@ -39,6 +39,15 @@ class Maze:
                 if self.maze[y][x] == '3':
                     #pygame.draw.rect(screen,end_color,(x*cell_size,y*cell_size,cell_size,cell_size))
                     screen.blit(self.arrival_image,(x*cell_size,y*cell_size,))
+    
+    def draw_instructions(self,screen):
+        pygame.font.init()
+        font1 = pygame.font.SysFont("Fantasy",40)
+        instruction_color = (230,230,230)
+        text_surface1 = font1.render("Porta l'endermen dal diamante",True,instruction_color)
+        text_surface2 = font1.render("Usa le freccine per muoverti",True,instruction_color)
+        screen.blit(text_surface1,(600,450))
+        screen.blit(text_surface2,(600,490))
 
 
         
