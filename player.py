@@ -9,6 +9,7 @@ class Player(Maze):
       self.maze_height = len(self.maze)
       self.maze_width = len(self.maze[0])
       self.is_win = False
+      self.player_image = pygame.image.load("./immagini/character.png")
 
     def find_player(self):
         rows = len(self.maze)
@@ -21,16 +22,19 @@ class Player(Maze):
                 if m[y][x] == '1':
                     return (x,y)
 
-    def draw_player(self,screen,player_size):
+    def draw_player(self,screen,player_size): #spostare questa funzione insieme agli altri draw
         rows = len(self.maze)
         cols = len(self.maze[0]) 
         m = self.maze
         player_color = (255,0,0)
+        self.player_image = pygame.transform.scale(self.player_image,(player_size,player_size))
 
         for y in range(rows):
             for x in range(cols):
                 if m[y][x] == '1':
-                    pygame.draw.rect(screen,player_color,(x*player_size,y*player_size,player_size,player_size))
+                    #pygame.draw.rect(screen,player_color,(x*player_size,y*player_size,player_size,player_size))\
+                    screen.blit(self.player_image,(x*player_size,y*player_size))
+
 
     def move_up(self):
         x = self.player_x
