@@ -40,14 +40,23 @@ class Maze:
                     #pygame.draw.rect(screen,end_color,(x*cell_size,y*cell_size,cell_size,cell_size))
                     screen.blit(self.arrival_image,(x*cell_size,y*cell_size,))
     
-    def draw_instructions(self,screen):
+    def draw_instructions(self,screen,is_paused=False):
         pygame.font.init()
         font1 = pygame.font.SysFont("Fantasy",40)
         instruction_color = (230,230,230)
+        pause_text = "Premi P per mettere pausa"
+        if is_paused:
+            pause_text = "Premi P per togliere pausa"
+
+            
+
         text_surface1 = font1.render("Porta l'endermen dal diamante",True,instruction_color)
         text_surface2 = font1.render("Usa le freccine per muoverti",True,instruction_color)
+        text_surface3 = font1.render(pause_text,True,instruction_color)
+
         screen.blit(text_surface1,(600,450))
         screen.blit(text_surface2,(600,490))
+        screen.blit(text_surface3,(600,530))
 
 
         

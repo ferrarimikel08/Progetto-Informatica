@@ -24,6 +24,10 @@ for level in levels:
     current_time = 0
     first_input = True
     level_number = level_number-1
+    is_paused = False
+    pause_start = 0
+    total_paused_time = 0
+
     maze = Maze(level)
     player = Player(level)
     screen = pygame.display.set_mode(window_size)
@@ -46,25 +50,33 @@ for level in levels:
                     first_input = False
                     time = 0
 
-                if event.key==pygame.K_LEFT:
+                if event.key==pygame.K_LEFT and not is_paused:
                     player.move_left()
-                elif event.key==pygame.K_RIGHT:
+                elif event.key==pygame.K_RIGHT and not is_paused:
                     player.move_right()
-                elif event.key==pygame.K_UP:
+                elif event.key==pygame.K_UP and not is_paused: #mettere spazi agli uguali
                     player.move_up()
-                elif event.key==pygame.K_DOWN:
-                    player.move_down()                   
+                elif event.key == pygame.K_DOWN and not is_paused: #sostituire cond==False con not cond
+                    player.move_down()
+                elif event.key == pygame.K_p:
+                    if is_paused == False:
+                        is_paused = True
+                        pause_start = pygame.time.get_ticks()
+                    else:
+                        is_paused = False
+                        total_paused_time += pygame.time.get_ticks() - pause_start
+
             elif event.type == pygame.KEYDOWN and player.is_win==True:
                 if event.key == pygame.K_RETURN:
                     play = False
         
         clock.tick(fps)
-        if player.is_win == False and first_input==False:
-            current_time = float(pygame.time.get_ticks() - start_time)/1000.0
+        if player.is_win == False and first_input==False and is_paused == False:
+            current_time = float(pygame.time.get_ticks() - start_time - total_paused_time)/1000.0
         screen.fill(BLACK)
         maze.draw_maze(screen,maze_height,maze_width,cell_size)
         if player.is_win==False:
-            maze.draw_instructions(screen)
+            maze.draw_instructions(screen,is_paused)
         player.draw_player(screen,cell_size)
         player.draw_time(screen,current_time)
         
