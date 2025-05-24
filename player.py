@@ -128,26 +128,42 @@ class Player(Maze):
         screen.blit(text_surface1,(300,400))
         screen.blit(text_surface2,(200,465))
     
-    def draw_end(self,screen, times):
+    def draw_end(self,screen):
         pygame.font.init()
-        font1 = pygame.font.SysFont("impact", 80)
+        font1 = pygame.font.SysFont("impact", 60)
         font2 = pygame.font.SysFont("impact", 40)
-        font3 = pygame.font.SysFont("impact", 15)
         win_color = (255,255,255)
         text_surface1 = font1.render("HAI COMPLETATO IL GIOCO",True,win_color)
         text_surface2 = font2.render('PREMERE "INVIO" PER VEDERE I TUOI RECORD',True,win_color)                        
-        screen.blit(text_surface1,(100,120))
-        screen.blit(text_surface2,(170,200))
+        screen.blit(text_surface1,(290,400))
+        screen.blit(text_surface2,(240,470))
+    
+    def draw_records(self,screen,times,background_image):
+        screen.blit(background_image,(0,0))
+        win_color = (255,255,255)
 
+        pygame.font.init()
+        font1 = pygame.font.SysFont("impact", 80)
+        font2 = pygame.font.SysFont("impact", 40)
+        
+        text_surface1 = font1.render("I TUOI RECORD",True,win_color)
+        text_surface2 = font2.render('PREMERE "INVIO" PER USCIRE',True,win_color)                        
+        screen.blit(text_surface1,(380,30))
+        screen.blit(text_surface2,(370,470))
+
+        font3 = pygame.font.SysFont("impact", 50)
+        
         level_number = 0
         records = self.get_records()
         for time in times:
-            
-            text = "LIVELLO "+str(level_number)+": "+str(time)+" RECORD: "+str(records[level_number])
+            text = "LIVELLO "+str(level_number)+": "+str(time)
+            text2 = "RECORD: "+str(records[level_number])
             text_surface3 = font3.render(text,True,win_color)
-            ypos = 290+20*level_number
-            screen.blit(text_surface3,(600,ypos))
-            level_number=level_number+1
+            text_surface4 = font3.render(text2,True,win_color)
+            ypos = 150 + 55 * level_number
+            screen.blit(text_surface3,(250,ypos))
+            screen.blit(text_surface4,(650,ypos))
+            level_number = level_number + 1
 
     def draw_time(self,screen,time):
         pygame.font.init()

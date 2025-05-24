@@ -18,16 +18,16 @@ clock = pygame.time.Clock()
 fps = 30
 
 cell_size = 50
-levels = ["gamemap1.txt", "gamemap2.txt","gamemap3.txt","gamemap4.txt","gamemap5.txt"]
+levels = ["./gamemaps/gamemap1.txt", "./gamemaps/gamemap2.txt", "./gamemaps/gamemap3.txt","./gamemaps/gamemap4.txt", "./gamemaps/gamemap5.txt",]
 times = []
 
 level_number = len(levels)
 for level in levels:
-    time_registered = False
-    current_time = 0
-    first_input = True
-    level_number = level_number-1
     is_paused = False
+    time_registered = False
+    first_input = True
+    current_time = 0
+    level_number = level_number-1
     pause_start = 0
     total_paused_time = 0
 
@@ -71,7 +71,11 @@ for level in levels:
 
             elif event.type == pygame.KEYDOWN and player.is_win==True:
                 if event.key == pygame.K_RETURN:
-                    play = False
+                    if level_number == 0:
+                        player.draw_records(screen,times,background_image)
+                        level_number = -1
+                    else:
+                        play = False
         
         clock.tick(fps)
         if player.is_win == False and first_input==False and is_paused == False:
@@ -79,6 +83,7 @@ for level in levels:
         maze.draw_maze(screen,maze_height,maze_width,cell_size)
         if player.is_win==False:
             maze.draw_instructions(screen,is_paused)
+        
         player.draw_player(screen,cell_size)
         player.draw_time(screen,current_time)
         
@@ -88,26 +93,11 @@ for level in levels:
                 time_registered=True
 
             if level_number==0:
+                player.draw_end(screen)
+            elif level_number == -1:
                 player.update_records(times)
-                player.draw_end(screen,times)
+                player.draw_records(screen,times,background_image)
             else:
                 player.draw_win(screen)
             
-        pygame.display.update()
-
-if level_number == 0:
-    showing_records = True
-    while showing_records:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
-                showing_records = False
-
-        screen.blit(background_image, (0, 0))
-        player.draw_end(screen, times)
-        pygame.display.update()
-
-        
-        
+        pygame.display.update()        

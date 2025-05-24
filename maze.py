@@ -6,8 +6,6 @@ class Maze:
         self.path_image = pygame.image.load("./immagini/path.png")
         self.wall_image = pygame.image.load("./immagini/wall.png")
     
-        
-        
         matrix = []
         with open(file_name,"r",encoding="utf-8") as f:
             lines = f.readlines()
@@ -48,19 +46,10 @@ class Maze:
         pause_text = "PREMERE P PER METTERE IN PAUSA"
         if is_paused:
             pause_text = "PREMERE P PER RIPRENDERE"
-
-
-            
-
         text_surface1 = font1.render("PORTA L'ENDERMAN AL DIAMANTE",True,instruction_color)
         text_surface2 = font2.render("USA LE FRECCINE PER MUOVERTI NELLA LAVA",True,instruction_color)
         text_surface3 = font2.render(pause_text,True,instruction_color)
 
         screen.blit(text_surface1,(350,400))
         screen.blit(text_surface2,(430,450))
-        screen.blit(text_surface3,(465,480))
-
-
-        
-  
-        
+        screen.blit(text_surface3,(465,480))        
