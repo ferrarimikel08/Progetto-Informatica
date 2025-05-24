@@ -11,6 +11,9 @@ window_color = (120,30,35)
 BLACK = (0,0,0)
 pygame.display.set_caption("Labirinto")
 
+background_image = pygame.image.load("./immagini/background.png")
+background_image = pygame.transform.scale(background_image, window_size)
+
 clock = pygame.time.Clock()
 fps = 30
 
@@ -37,7 +40,7 @@ for level in levels:
     play = True
 
     while play:
-
+        screen.blit(background_image, (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.display.quit()
@@ -73,7 +76,6 @@ for level in levels:
         clock.tick(fps)
         if player.is_win == False and first_input==False and is_paused == False:
             current_time = float(pygame.time.get_ticks() - start_time - total_paused_time)/1000.0
-        screen.fill(BLACK)
         maze.draw_maze(screen,maze_height,maze_width,cell_size)
         if player.is_win==False:
             maze.draw_instructions(screen,is_paused)
@@ -103,7 +105,7 @@ if level_number == 0:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 showing_records = False
 
-        screen.fill(BLACK)
+        screen.blit(background_image, (0, 0))
         player.draw_end(screen, times)
         pygame.display.update()
 

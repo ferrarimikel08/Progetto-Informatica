@@ -120,41 +120,41 @@ class Player(Maze):
 
     def draw_win(self,screen):        
         pygame.font.init()
-        font1 = pygame.font.SysFont("Fantasy",100)
-        font2 = pygame.font.SysFont("Fantasy", 50)
-        win_color = (200,55,60)
+        font1 = pygame.font.SysFont("impact",60)
+        font2 = pygame.font.SysFont("impact", 40)
+        win_color = (255,255,255)
         text_surface1 = font1.render("HAI COMPLETATO IL LIVELLO",True,win_color)
-        text_surface2 = font2.render('premere "INVIO" per passare al prossimo livello',True,win_color)                        
-        screen.blit(text_surface1,(100,420))
-        screen.blit(text_surface2,(200,500))
+        text_surface2 = font2.render('PREMERE "INVIO" PER PASSARE AL PROSSIMO LIVELLO',True,win_color)                        
+        screen.blit(text_surface1,(300,400))
+        screen.blit(text_surface2,(200,465))
     
     def draw_end(self,screen, times):
         pygame.font.init()
-        font1 = pygame.font.SysFont("Fantasy",100)
-        font2 = pygame.font.SysFont("Fantasy", 50)
-        font3 = pygame.font.SysFont("Fantasy", 15)
-        win_color = (200,55,60)
+        font1 = pygame.font.SysFont("impact", 80)
+        font2 = pygame.font.SysFont("impact", 40)
+        font3 = pygame.font.SysFont("impact", 15)
+        win_color = (255,255,255)
         text_surface1 = font1.render("HAI COMPLETATO IL GIOCO",True,win_color)
-        text_surface2 = font2.render('premere "INVIO" per terminare il gioco',True,win_color)                        
-        screen.blit(text_surface1,(100,420))
-        screen.blit(text_surface2,(200,500))
+        text_surface2 = font2.render('PREMERE "INVIO" PER VEDERE I TUOI RECORD',True,win_color)                        
+        screen.blit(text_surface1,(100,120))
+        screen.blit(text_surface2,(170,200))
 
         level_number = 0
         records = self.get_records()
         for time in times:
             
-            text = "livello "+str(level_number)+": "+str(time)+" record: "+str(records[level_number])
+            text = "LIVELLO "+str(level_number)+": "+str(time)+" RECORD: "+str(records[level_number])
             text_surface3 = font3.render(text,True,win_color)
-            ypos = 550+10*level_number
-            screen.blit(text_surface3,(300,ypos))
+            ypos = 290+20*level_number
+            screen.blit(text_surface3,(600,ypos))
             level_number=level_number+1
 
     def draw_time(self,screen,time):
         pygame.font.init()
-        font1 = pygame.font.SysFont("Fantasy",20)
-        time_color = (200,55,60)
-        text_surface1 = font1.render("tempo: "+str(time),True,time_color)
-        screen.blit(text_surface1,(30,550))
+        font1 = pygame.font.SysFont("impact",50)
+        time_color = (255,255,255)
+        text_surface1 = font1.render("TEMPO: "+str(time),True,time_color)
+        screen.blit(text_surface1,(466,518))
     
     def get_records(self):
         records = []

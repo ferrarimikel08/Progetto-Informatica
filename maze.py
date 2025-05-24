@@ -42,21 +42,23 @@ class Maze:
     
     def draw_instructions(self,screen,is_paused=False):
         pygame.font.init()
-        font1 = pygame.font.SysFont("Fantasy",40)
+        font1 = pygame.font.SysFont("impact",40)
+        font2 = pygame.font.SysFont("impact",20)
         instruction_color = (230,230,230)
-        pause_text = "Premi P per mettere pausa"
+        pause_text = "PREMERE P PER METTERE IN PAUSA"
         if is_paused:
-            pause_text = "Premi P per togliere pausa"
+            pause_text = "PREMERE P PER RIPRENDERE"
+
 
             
 
-        text_surface1 = font1.render("Porta l'endermen dal diamante",True,instruction_color)
-        text_surface2 = font1.render("Usa le freccine per muoverti",True,instruction_color)
-        text_surface3 = font1.render(pause_text,True,instruction_color)
+        text_surface1 = font1.render("PORTA L'ENDERMAN AL DIAMANTE",True,instruction_color)
+        text_surface2 = font2.render("USA LE FRECCINE PER MUOVERTI NELLA LAVA",True,instruction_color)
+        text_surface3 = font2.render(pause_text,True,instruction_color)
 
-        screen.blit(text_surface1,(600,450))
-        screen.blit(text_surface2,(600,490))
-        screen.blit(text_surface3,(600,530))
+        screen.blit(text_surface1,(350,400))
+        screen.blit(text_surface2,(430,450))
+        screen.blit(text_surface3,(465,480))
 
 
         
