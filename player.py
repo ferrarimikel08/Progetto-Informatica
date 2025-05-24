@@ -149,8 +149,6 @@ class Player(Maze):
             screen.blit(text_surface3,(300,ypos))
             level_number=level_number+1
 
-
-
     def draw_time(self,screen,time):
         pygame.font.init()
         font1 = pygame.font.SysFont("Fantasy",20)
@@ -160,7 +158,7 @@ class Player(Maze):
     
     def get_records(self):
         records = []
-        with open("records.txt","r") as f:
+        with open("records.txt", "r") as f:
             records = f.readlines()
-            records = [float(r) for r in records]
+            records = [float(r) for r in records if r.strip() != ""]
         return records

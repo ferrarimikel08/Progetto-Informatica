@@ -92,5 +92,20 @@ for level in levels:
                 player.draw_win(screen)
             
         pygame.display.update()
+
+if level_number == 0:
+    showing_records = True
+    while showing_records:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                showing_records = False
+
+        screen.fill(BLACK)
+        player.draw_end(screen, times)
+        pygame.display.update()
+
         
         
