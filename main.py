@@ -22,7 +22,7 @@ fps = 30
 
 cell_size = 50
 
-levels = ["./gamemaps/gamemap1.txt", "./gamemaps/gamemap2.txt", "./gamemaps/gamemap3.txt","./gamemaps/gamemap4.txt", "./gamemaps/gamemap5.txt",]
+levels = ["./gamemaps/gamemap1.txt", "./gamemaps/gamemap2.txt", "./gamemaps/gamemap3.txt", "./gamemaps/gamemap4.txt","./gamemaps/gamemap5.txt",]
 
 times = []
 

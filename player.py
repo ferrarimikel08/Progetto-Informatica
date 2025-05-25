@@ -178,6 +178,7 @@ class Player(Maze):
         font3 = pygame.font.SysFont("impact", 50)
         
         level_number = 0
+        self.update_records(times)
         records = self.get_records()
 
         for time in times:
@@ -206,7 +207,7 @@ class Player(Maze):
 
         screen.blit(text_surface1, (466,518))
     
-    def get_records(self):
+    def get_records(selff):
         records = []
 
         with open("records.txt", "r") as f:
